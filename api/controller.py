@@ -55,4 +55,11 @@ def initKitchen():
     all_menu.append(pizza4)
 
 
-def createorder():
+def createorder(pizzas: str, ):
+    pizzas = request.form["pizzas"]
+    takeaway = request.form["takeaway"]
+    payment_type = request.form["payment_type"]
+    customer_id = request.form["customer_id"]
+    note = request.form["note"]
+    delivery_address = request.form["delivery_address"]
+

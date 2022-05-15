@@ -58,9 +58,17 @@ def get_order_by_id():
 @app.route('/order', methods=['POST'])
 def create_order():
     try:
-        pizza = request.args.get("pizzas")
+        pizzas = request.form["pizzas"]
+        takeaway = request.form["takeaway"]
+        payment_type = request.form["payment_type"]
+        customer_id = request.form["customer_id"]
+        note = request.form["note"]
+        delivery_address = request.form["delivery_address"]
+
+
     except:
-        print("error")
+        return make_response("The format of the object is not valid", 400)
+
 
 
 # Rendering User interface for making order TODO: Abandoned
