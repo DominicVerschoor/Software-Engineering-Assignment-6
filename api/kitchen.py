@@ -1,12 +1,12 @@
 from _datetime import datetime
-from api.controller import gettimetodelivery
 
 all_menu = []
 all_order = []
 
+
 class Menu:
 
-    def __init__(self, id: int, name: str, vegetarian: bool, price: float, ingredient: str, preptime: float):
+    def __init__(self, id: int, name: str, vegetarian: bool, price: float, ingredient, preptime: float):
         self.id = id
         self.name = name
         self.vegetarian = vegetarian
@@ -15,7 +15,8 @@ class Menu:
         self.preptime = preptime
 
     def __repr__(self):
-        return f"User {self.id}, {self.name}"
+        return f"Pizza ID: {self.id},<br> Name: {self.name},<br> Vegetarian: {self.vegetarian},<br> Price: {self.price} €<br> " \
+               f"Toppings: {self.ingredient}<br> Preparation time: {self.preptime} minutes<br>"
 
 
 class Order:
@@ -31,8 +32,10 @@ class Order:
         self.address = address
         self.menu_list = menu_list
         self.note = note
-        self.time_to_delivery = gettimetodelivery(self)
         Order.current_order_id += 1
 
     def __repr__(self):
-        return f"Order {self.id}, {self.customer_id}, {self.status}"
+        return f"Order ID: {self.id},<br> Customer ID: {self.customer_id},<br> Status: {self.status},<br> Order at: {self.order_time},<br> " \
+               f"Note: {self.note},<br> Takeaway: {self.takeaway},<br> Payment: {self.payment_type},<br> Address: {self.address},<br> " \
+               f"Pizza ordered: {self.menu_list} "
+

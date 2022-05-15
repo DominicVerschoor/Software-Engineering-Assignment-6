@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pizza Restaurant Place Order</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<h2>Please Order</h2>
+<form action="/order" method="post">
+
+    <div>
+“pizzas”: [1, 1, 5, 4, ...],
+“takeaway”: true,
+“payment_type”: “CreditCard”,
+“customer_id”: 0,
+“note”: “something”,
+“delivery_address”: {
+“street”: “something”,
+“city”: “something”,
+“country”: “something”,
+“zipcode”: “something”
+}
+        <label for="pizza_order"><strong>Pizza order</strong></label>
+        <input type="text" placeholder="Enter pizza number" name="pizza_order" required> <br/>
+
+        <label for="takeaway"><strong>Takeaway</strong></label>
+        <input type="email" placeholder="Enter email" name="takeaway" required> <br/>
+
+        <label for="payment_type"><strong>Payment Type</strong></label>
+        <input type="password" placeholder="Enter Password" name="payment_type" required> <br/>
+
+        <button type="submit">Place Order</button>
+        <br/>
+
+    </div>
+
+</form>
+</body>
+</html>
