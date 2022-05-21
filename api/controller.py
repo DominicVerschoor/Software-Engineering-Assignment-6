@@ -1,9 +1,13 @@
+# Group 28
+# Tantus Choomphupan    ID: i6286789
+# Dominic Verschoor     ID: i6267365
 
-from kitchen import Order, Menu
+
+from kitchen import OrderItem, Menu
 
 
 # For Order get time to delivery
-def gettimetodelivery(order: Order):
+def gettimetodelivery(order: OrderItem):
     time = 0
     for menu in order.menu_list:
         time += menu.preptime
@@ -27,9 +31,8 @@ def getmenu(id: int):
 
 
 def getorder(id: int):
-    print(Order.all_order)
-    for order in Order.all_order:
-        print(order.id)
+    initOrder()
+    for order in OrderItem.all_order:
         if order.id == id:
             return order
 
@@ -38,7 +41,7 @@ def getorder(id: int):
 
 def getdeliverytime(id: int):
     result = []
-    for order in Order.all_order:
+    for order in OrderItem.all_order:
         if order['id'] == id:
             find_order = order
             delivery_time = order.time_to_delivery
@@ -59,11 +62,21 @@ def initKitchen():
     Menu.all_menu.append(pizza4)
 
 
+def initOrder():
+    order0 = OrderItem(1001, True, "Creditcard", ["Maastricht", "Dorpstraat", "126"], "somthing", "No onion", 35)
+    OrderItem.all_order.append(order0)
+    order1 = OrderItem(1002, False, "Creditcard", ["Maastricht", "Centrum", "95/1"], "somthing", "Super spicy", 20)
+    OrderItem.all_order.append(order1)
+    order2 = OrderItem(1003, True, "Cash", ["Maastricht", "Mainstrat", "50/3"], "somthing", "", 40)
+    OrderItem.all_order.append(order2)
+    order3 = OrderItem(1001, False, "Cash", ["Maastricht", "Sittraat", "3"], "somthing", "Extra veggie", 50)
+    OrderItem.all_order.append(order3)
+
+
 def createorder(pizzas, takeaway: bool, payment_type: str, customer_id: int, note: str, delivery_address):
     menu_list, total_cooktime = convertorder(pizzas)
-    newOrder = Order()
-    newOrder.__int__(customer_id, takeaway, payment_type, delivery_address, menu_list, note, total_cooktime)
-    Order.all_order.append(newOrder)
+    newOrder = OrderItem(customer_id, takeaway, payment_type, delivery_address, menu_list, note, total_cooktime)
+    OrderItem.all_order.append(newOrder)
 
 
 def convertorder(pizzas: str):
@@ -79,4 +92,10 @@ def convertorder(pizzas: str):
 
 
 def getnewestorder():
-    return Order.all_order[len(Order.all_order)-1]
+    return OrderItem.all_order[len(OrderItem.all_order) - 1]
+
+
+def cancelorder(id: int):
+    toCancel = OrderItem.all_order[id]
+    toCancel.status = "Cancelled"
+    return toCancel

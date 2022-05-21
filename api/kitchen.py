@@ -1,12 +1,18 @@
+# Group 28
+# Tantus Choomphupan    ID: i6286789
+# Dominic Verschoor     ID: i6267365
+
+
 import datetime
 
 
-class Order:
+class OrderItem:
     all_order = []
     current_order_id = 0
 
-    def __int__(self, customer_id: int, takeaway: bool, payment_type: str, address, menu_list, note: str, total_cooktime: float):
-        self.id = Order.current_order_id
+    def __init__(self, customer_id: int, takeaway: bool, payment_type: str, address, menu_list, note: str,
+                 total_cooktime: float):
+        self.id = OrderItem.current_order_id
         self.customer_id = customer_id
         self.status = "In Progress"
         self.order_time = datetime.datetime.now()
@@ -17,10 +23,11 @@ class Order:
         self.note = note
         self.total_cooktime = total_cooktime
         if takeaway:
-            self.delivery_time = self.order_time + datetime.timedelta(0, total_cooktime*60)
+            self.delivery_time = self.order_time + datetime.timedelta(0, total_cooktime * 60)
         else:
-            self.delivery_time = self.order_time + datetime.timedelta(0, total_cooktime*60) + datetime.timedelta(0, 30*60)
-        Order.current_order_id += 1
+            self.delivery_time = self.order_time + datetime.timedelta(0, total_cooktime * 60) + datetime.timedelta(0,
+                                                                                                                   30 * 60)
+        OrderItem.current_order_id += 1
 
     def __repr__(self):
         return f"Order ID: {self.id},<br> Customer ID: {self.customer_id},<br> Status: {self.status},<br> Order at: {self.order_time},<br> " \
